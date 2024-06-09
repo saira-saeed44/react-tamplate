@@ -1,43 +1,15 @@
-import React from "react";
-function Cards(props){
-    console.log(props);
-   return(
-    <>
-<div className="cards">
-<img src={props.img} alt="image1" />
-<h3>{props.title}</h3>
-</div>
-    </>
-   )
-}
-export default Cards;
+import React from 'react';
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-// import React from 'react';
-
-// const MainComponent = ({ heading, paragraph,imageSrc }) => {
-//   return (
-//     <div className="justify-center items-center h-screen">
+const Card = ({card}) => {
+console.log("main component is here",card);
+  return (
     
-    
-//         <h1 className="text-3xl font-bold mb-4">{heading}</h1>
-//         <p className="mb-8">{paragraph}</p>
-//         <img src="" alt="Image" className="w-48 h-48 object-cover rounded" />
+    <div className="rounded-lg shadow-md p-4">
+      <img src={card?.imageUrl} alt={card?.title} className="w-full h-32 object-cover mb-4" />
+      <h2 className="text-xl font-semibold mb-2">{card?.title}</h2>
+      <p className="text-white">{card?.description}</p>
+    </div>
+  );
+};
 
-//     </div>
-//   );
-// };
-
-// export default MainComponent;
+export default Card;

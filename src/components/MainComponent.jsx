@@ -1,47 +1,29 @@
-import React from "react";
-import MainComponents from "./MainComponents";
-import img1 from "../components/images/features.jpg";
+import React, { useState } from 'react';
+import { cardData } from './utills/data';
+import Card from './MainComponents';
 
- 
-function Projects() {
-  const mainContent = {
-        heading: "Keep projects on schedule",
-        paragraph: "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit laborum — semper quis lectus nulla.",
-      };
+const App = () => {
+  const [visibleCards, setVisibleCards] = useState(6);
+
+  const loadMoreCards = () => {
+    setVisibleCards(prevVisibleCards => prevVisibleCards + 6);
+  };
+
+  console.log(cardData);
   return (
-    <>
-      <h1 className="heading1">Projects</h1>
-      <div className="cardComp">
-         <MainComponents heading={mainContent.heading} paragraph={mainContent.paragraph}  />
-
-        <MainComponents img={img1} title="Feature image "/>
-
-       
+    <div className="container mx-auto">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {cardData?.slice(0, visibleCards)?.map((card, index) => (
+          <Card  card={card} />
+        ))}
       </div>
-    </>
+      {visibleCards <cardData.length && (
+        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4" onClick={loadMoreCards}>
+          Load More
+        </button>
+      )}
+    </div>
   );
-}
-export default Projects;
+};
 
-
-
-// // App.js
-// import React from 'react';
-// import MainComponents from './MainComponents';
-// import {image} from '../components/images/featuresimage.jpg';
-
-// const App = () => {
-//   const mainContent = {
-//     heading: "Keep projects on schedule",
-//     paragraph: "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit laborum — semper quis lectus nulla.",
-//     image:"image",
-//   };
-
-//   return (
-//     <div>
-//       <MainComponents heading={mainContent.heading} paragraph={mainContent.paragraph} imageSrc={image} />
-//     </div>
-//   );
-// };
-
-// export default App;
+export default App;
